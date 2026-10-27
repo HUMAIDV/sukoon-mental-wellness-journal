@@ -11,7 +11,7 @@ const Pattern = ({journalData}) => {
             px-4 rounded-xl'><FontAwesomeIcon icon={faChartLine} id='chartIcon' className='icon' color='black'/></p>
             <div id="desc">
             <p id='mH' className='font-1 text-lg'>A gentle pattern</p>
-            <p className='text-2 text-sm'>You've checked in {journalData.length} times. Showing up is meaningful.</p>
+            <p className='text-2 text-sm'>You've checked in {journalData.length} {journalData.length === 1 ? 'time' : 'times'}. Showing up is meaningful.</p>
             </div>
             </div>
             </div>
