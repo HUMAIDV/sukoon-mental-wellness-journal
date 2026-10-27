@@ -84,7 +84,7 @@ const Chart=({journalData, setMaxMood}) => {
           Last 3 Days
         </button>
       </div>
-      <ResponsiveContainer width="100%" height="100%" className={"min-h-50 sm:min-h-75"}>
+      <ResponsiveContainer width="100%" height="100%" className={"min-h-50 sm:min-h-75 pt-5"}>
         <LineChart data={moodData}>
           <CartesianGrid strokeDasharray="3 3" />
 

@@ -20,8 +20,12 @@ const MoodChart = ({journalData}) => {
             </div>
         </div>
         <p className='font-1 text-3xl'>Mood this week</p>
-        <div id="chartContainer" className='pb-10'>
-            <Chart journalData={journalData} setMaxMood={setMaxMood}/>
+        <div id="chartContainer" className='pb-5'>
+            {journalData.length>0 ? (
+                <Chart journalData={journalData} setMaxMood={setMaxMood}/>
+            ) : (
+                <p className='text-center text-gray-600'>No data to display</p>
+            )}
         </div>
     </div>
   )
