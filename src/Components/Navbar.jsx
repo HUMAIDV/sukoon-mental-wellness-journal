@@ -20,6 +20,9 @@ const Navbar = () => {
         <a href="/">
         <div id="logo" className='flex items-center gap-5'>
             <FontAwesomeIcon color='black' icon={faBookBookmark} className='icon text-2xl bg-violet-200 p-3 rounded-xl' />
+            {/* <div className='border-2 border-violet-200 rounded-full overflow-hidden object-cover shadow-xl max-w-10 sm:max-w-12.5'>
+            <img src="/logo.jpg" alt="" width={50} />
+            </div> */}
             <div>
             <p className='text-2xl font-1'>Sukoon</p>
             <p className='text-sm text-gray-400 '>Your Mindful Space</p>
