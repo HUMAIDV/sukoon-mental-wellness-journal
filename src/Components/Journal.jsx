@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../App.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBookmark, faL } from '@fortawesome/free-solid-svg-icons'
+import { faBookmark, faCircleCheck, faL } from '@fortawesome/free-solid-svg-icons'
 import { toast } from 'react-toastify'
 
 const Journal = ({activeMood,setActiveMood,journalData,setJournalData,activeDate,filteredJournalData}) => {
@@ -102,7 +102,11 @@ const Journal = ({activeMood,setActiveMood,journalData,setJournalData,activeDate
             <p className='font-semibold'>Daily Reflection
                 {/* {activeDate} */}
             </p>
-            <p>{isSaved ? 'Saved Locally' : 'Not Saved'}</p>
+            <p>{isSaved ? (
+                <>
+                <FontAwesomeIcon icon={faCircleCheck} /> <span>Saved Locally</span>
+                </>
+                ) : 'Not Saved'}</p>
         </div>
         <p id="heading" className='text-3xl font-1'>What's on your mind?</p>
         <form action="" onSubmit={handleSubmit}>
