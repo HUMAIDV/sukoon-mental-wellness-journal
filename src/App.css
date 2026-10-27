@@ -1,0 +1,133 @@
+html{
+  scroll-behavior: smooth;
+}
+body{
+  min-height: 100vh;
+  font-family: "poppins", serif;
+  background: linear-gradient(-45deg, #fae5f2, #ced8f8, #e7d8f8);
+  
+  background-size: 400% 400%;
+  overflow-x: hidden;
+  
+  animation: liquidGradient 5s ease infinite;
+}
+
+@keyframes liquidGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.45);
+  
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); 
+  
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.25);
+  scroll-margin-top: 100px;
+  
+}
+
+.dark .glass-card {
+  background: rgba(15, 23, 42, 0.45); 
+  border: 1px solid rgba(255, 255, 255, 0.05); 
+  color: #f8fafc; 
+}
+
+.dark body{
+  background-size: 400% 400%;
+  background: linear-gradient(-45deg, #09090b, #0f172a, #1e1b4b, #2e1065);
+  color: #f8fafc; 
+  animation: liquidGradient 2.5s ease infinite;
+  
+}
+
+.btn-primary{
+  background-color: rgb(45, 1, 87);
+  color: white;
+  border-radius: 10px;
+  outline: none;
+}
+.dark .btn-primary{
+  background-color: white;
+  color: rgb(45, 1, 87);
+  border-radius: 10px;
+  outline: none;
+}
+.btn-secondary{
+  background-color: inherit;
+  color: rgb(45, 1, 87);
+  border: 2px solid rgb(45, 1, 87);
+   border-radius: 10px;
+  outline: none;
+}
+.dark .btn-secondary{
+  background-color: inherit;
+  color: white;
+  border: 2px solid white;
+   border-radius: 10px;
+  outline: none;
+}
+#navbar{
+  overflow-x: hidden;
+}
+
+.font-1{
+  font-family: "Bricolage Grotesque";
+}
+.font-2{
+  font-family: "Bilbo Swash Caps";
+  /* font-size: x-large; */
+}
+.font-3{
+  font-family: "Shalimar";
+
+}
+.font-4{
+  font-family: "Aguafina Script";
+}
+.text-2{
+  color: rgb(107, 114, 128);
+}
+.text-3{
+  color: rgb(156, 163, 175);
+}
+a{
+  text-decoration: none;
+}
+#navList,#navList li{
+  border-radius: 100px;
+}
+
+@layer utilities {
+  @media (max-width: 470px) {
+    .glass-card *:not(.font-1,.font-2,.font-4,.icon,svg) {
+      font-size: xx-small !important;
+    }
+    .glass-card{
+      padding: 5%;
+      
+    }
+    .icon{
+      font-size: 15px;
+    }
+    #chartIcon{
+      font-size: 15px !important;
+    }
+  }
+  @media (max-width: 320px) {
+    #dashboardContainer{
+      /* padding: 2.5%; */
+    }
+    
+  }
+}
