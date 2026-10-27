@@ -107,7 +107,7 @@ const Journal = ({activeMood,setActiveMood,journalData,setJournalData,activeDate
         <p id="heading" className='text-3xl font-1'>What's on your mind?</p>
         <form action="" onSubmit={handleSubmit}>
 
-        <textarea name="journal" id="journal" placeholder='let your thoughts arrive without judgement...' className='border-2 border-gray-400 bg-gray-100 rounded-2xl p-3 min-h-50 min-w-full mb-5 text-black' value={journal} onChange={(e)=>{
+        <textarea name="journal" id="journal" placeholder='let your thoughts arrive without judgement...' className='border-2 border-gray-400 bg-gray-100 rounded-2xl p-3 min-h-50 min-w-full mb-5 text-black italic font-2 text-2xl sm:text-3xl' value={journal} onChange={(e)=>{
             
             setJournal(e.target.value)
 
