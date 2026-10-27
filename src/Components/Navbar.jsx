@@ -16,7 +16,7 @@ const Navbar = () => {
     
 
     return (
-    <div id='navbar' className='glass-card flex justify-between items-center border-b-1 border-violet-300 px-5 py-5 sticky top-0 z-10 bg-violet-100 sm:px-10 md:px-20 lg:px-10 xl:px-25 min-w-full'>
+    <div id='navbar' className='glass-card backdrop-blur-md flex justify-between items-center border-b-1 border-violet-300 px-5 py-5 sticky top-0 z-10 bg-violet-100 sm:px-10 md:px-20 lg:px-10 xl:px-25 min-w-full'>
         <a href="/">
         <div id="logo" className='flex items-center gap-5'>
             <FontAwesomeIcon color='black' icon={faBookBookmark} className='icon text-2xl bg-gray-300 p-3 rounded-xl' />
