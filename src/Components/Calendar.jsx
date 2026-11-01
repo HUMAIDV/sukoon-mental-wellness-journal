@@ -3,36 +3,29 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useMemo, useState } from 'react';
 
 export default function Calendar({ journalData, activeDate, setActiveDate }) {
-  // Track the currently displayed year and month state (0-indexed: 0 = Jan, 11 = Dec)
 
-//   const [active,setActive]=useState(false)
-  const [currentDate, setCurrentDate] = useState(new Date()); 
+  const [currentDate, setCurrentDate] = useState(new Date());
   const currentYear = currentDate.getFullYear();
   const currentMonthIndex = currentDate.getMonth();
 
-  // Short month names for date string construction matching your schema
   const monthNamesShort = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const currentMonthShort = monthNamesShort[currentMonthIndex];
-  
-  // Full header title formatting (e.g., "October 2026")
+
   const monthHeaderName = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
 
-  // 1. Create a fast lookup map of dates to moods
   const moodMap = useMemo(() => {
     const map = {};
     journalData.forEach(entry => {
       if (entry.date && entry.mood) {
-        map[entry.date] = entry.mood; // Keeps the latest mood for that day
+        map[entry.date] = entry.mood;
       }
     });
     return map;
   }, [journalData]);
 
-  // 2. Generate dynamic Calendar Parameters
   const daysInMonth = new Date(currentYear, currentMonthIndex + 1, 0).getDate();
-  const firstDayIndex = new Date(currentYear, currentMonthIndex, 1).getDay(); // 0 = Sun
+  const firstDayIndex = new Date(currentYear, currentMonthIndex, 1).getDay();
 
-  // Navigation handlers
   const handlePrevMonth = () => {
     setCurrentDate(new Date(currentYear, currentMonthIndex - 1, 1));
   };
@@ -41,11 +34,10 @@ export default function Calendar({ journalData, activeDate, setActiveDate }) {
     setCurrentDate(new Date(currentYear, currentMonthIndex + 1, 1));
   };
 
-  // 3. Define a simple color mapping for mood indicators
   const moodColors = {
     Calm: 'bg-teal-500 text-white drop-shadow-sm drop-shadow-teal-500',
     Okay: 'bg-cyan-800 text-white drop-shadow-sm drop-shadow-cyan-800',
-    Stressed: 'bg-red-900 text-white drop-shadow-sm drop-shadow-red-800',
+    Stressed: 'bg-red-900 text-white drop-shadow-sm drop-shadow-red-900',
     Low: 'bg-violet-900 text-white drop-shadow-sm drop-shadow-violet-900',
     Happy: 'bg-amber-500 text-white drop-shadow-sm drop-shadow-amber-500',
   };
@@ -54,31 +46,29 @@ export default function Calendar({ journalData, activeDate, setActiveDate }) {
 
   return (
     <div id='calendarContainer' className='glass-card rounded-2xl px-10 md:px-5 md:py-5 py-10 bg-white sm:max-w-fit md:max-w-full  max-h-fit shadow-sm border border-gray-100'>
-      
-          <h3 className="text-3xl font-1 pl-2 mb-3">Look Back</h3>
 
-      {/* Month Navigation Header */}
+      <h3 className="text-3xl font-1 pl-2 mb-3">Look Back</h3>
+
       <div className="flex items-center justify-between mb-4 px-2">
-          <h3 className="text-xl text-2">{monthHeaderName}</h3>
-          <div className="arrows">
+        <h3 className="text-xl text-2">{monthHeaderName}</h3>
+        <div className="arrows">
 
-        <button 
-          onClick={handlePrevMonth} 
-          className="icon p-1 rounded-full hover:bg-gray-100 transition-colors text-gray-600 font-bold text-3xl"
+          <button
+            onClick={handlePrevMonth}
+            className="icon p-1 rounded-full transition-colors text-gray-600 font-bold text-3xl cursor-pointer"
           >
-          <FontAwesomeIcon icon={faCircleArrowLeft} />
-          
-        </button>
-        <button 
-          onClick={handleNextMonth} 
-          className="icon p-1 rounded-full hover:bg-gray-100 transition-colors text-gray-600 font-bold text-3xl"
+            <FontAwesomeIcon icon={faCircleArrowLeft} className='hover:bg-gray-100 rounded-full max-w-7.5 p-0 border-2' />
+
+          </button>
+          <button
+            onClick={handleNextMonth}
+            className="icon p-1 rounded-full transition-colors text-gray-600 font-bold text-3xl cursor-pointer"
           >
-          <FontAwesomeIcon icon={faCircleArrowRight} />
-        </button>
+            <FontAwesomeIcon icon={faCircleArrowRight} className='hover:bg-gray-100 rounded-full max-w-7.5 p-0 border-2' />
+          </button>
         </div>
       </div>
-      
-      {/* Calendar Layout Matrix */}
+
       <div className="grid grid-cols-7 gap-2 text-center text-xs font-semibold mb-2">
         {weekdays.map(day => (
           <div key={day} className="text-gray-400 py-1">{day}</div>
@@ -86,44 +76,38 @@ export default function Calendar({ journalData, activeDate, setActiveDate }) {
       </div>
 
       <div className="grid grid-cols-7 gap-2">
-        {/* Empty cells for padding out the initial week alignment spacing */}
         {Array.from({ length: firstDayIndex }).map((_, idx) => (
           <div key={`empty-${idx}`} className="p-2"></div>
         ))}
 
-        {/* Real Day Render blocks */}
         {Array.from({ length: daysInMonth }).map((_, idx) => {
           const dayNumber = idx + 1;
-          
-          // Dynamically builds keys perfectly matched to your design (e.g., "01 Oct 2026", "24 Nov 2026")
+
           const targetDateStr = `${dayNumber.toString().padStart(2, '0')} ${currentMonthShort} ${currentYear}`;
           const loggedMood = moodMap[targetDateStr];
 
-          // Today & Target comparison checking for future validation constraints
           const today = new Date();
-          today.setHours(0,0,0,0);
-          
+          today.setHours(0, 0, 0, 0);
+
           const targetDate = new Date(currentYear, currentMonthIndex, dayNumber);
-          targetDate.setHours(0,0,0,0);
-          
+          targetDate.setHours(0, 0, 0, 0);
+
           const isFutureDate = targetDate > today;
 
-        const active = activeDate === targetDateStr;
-            
+          const active = activeDate === targetDateStr;
+
 
           return (
             !isFutureDate ? (
               <a href="#journalContainer" key={dayNumber}>
                 <div
-                  className={`relative p-2 md:p-0 rounded-full flex flex-col items-center justify-center font-medium transition-all group aspect-square md:text-sm ${
-                    loggedMood
+                  className={`relative p-2 md:p-0 rounded-full flex flex-col items-center justify-center font-medium transition-all group aspect-square md:text-sm ${loggedMood
                       ? moodColors[loggedMood] || "bg-violet-500 text-white"
                       : ""
-                  } ${
-                    active
+                    } ${active
                       ? "border-2 border-gray-400"
                       : "cursor-pointer hover:bg-gray-400"
-                  }`}
+                    }`}
                   onClick={() => {
                     setActiveDate(targetDateStr);
                   }}
@@ -151,7 +135,6 @@ export default function Calendar({ journalData, activeDate, setActiveDate }) {
         })}
       </div>
 
-      {/* Mini Color Legend */}
       <div className="mt-4 flex flex-wrap gap-3 justify-center text-[10px] font-semibold text-gray-500">
         <div className="flex items-center gap-1"><span className="w-2 h-2 rounded bg-amber-500 inline-block"></span> Happy</div>
         <div className="flex items-center gap-1"><span className="w-2 h-2 rounded bg-teal-500 inline-block"></span> Calm</div>

@@ -29,7 +29,6 @@ const Dashboard = () => {
   })
 
   const [filteredJournalData,setFilteredJournalData]=useState([])
-  // let filteredJournalData=[]
 
   useEffect(()=>{
 
