@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer
-} from "recharts";
+// import {
+//   LineChart,
+//   Line,
+//   XAxis,
+//   YAxis,
+//   CartesianGrid,
+//   Tooltip,
+//   ResponsiveContainer
+// } from "recharts";
 
 const Chart = ({ journalData, setMaxMood }) => {
 
@@ -79,15 +79,15 @@ const Chart = ({ journalData, setMaxMood }) => {
     <div className="w-full max-h-50 sm:max-h-fit">
 
       <div className="flex gap-3 mb-4 text-xs md:text-md">
-        <button className={`${selectedPeriod === 7 ? 'btn-primary' : 'btn-secondary'} cursor-pointer py-2 px-5`} onClick={() => setSelectedPeriod(7)}>
+        <button aria-label="last 7 days" className={`${selectedPeriod === 7 ? 'btn-primary' : 'btn-secondary'} cursor-pointer py-2 px-5`} onClick={() => setSelectedPeriod(7)}>
           Last 7 Days
         </button>
 
-        <button className={`${selectedPeriod === 3 ? 'btn-primary' : 'btn-secondary'} cursor-pointer py-2 px-5`} onClick={() => setSelectedPeriod(3)}>
+        <button aria-label="last 3 days" className={`${selectedPeriod === 3 ? 'btn-primary' : 'btn-secondary'} cursor-pointer py-2 px-5`} onClick={() => setSelectedPeriod(3)}>
           Last 3 Days
         </button>
       </div>
-      {filteredData.length > 0 ? (
+      {/* {filteredData.length > 0 ? (
         <ResponsiveContainer width="100%" height="100%" className={"min-h-50 sm:min-h-75 pt-5"}>
           <LineChart data={moodData}>
             <CartesianGrid strokeDasharray="3 3" />
@@ -110,7 +110,7 @@ const Chart = ({ journalData, setMaxMood }) => {
 
       ) : (
         <p className='text-center text-gray-600 mt-10'>No data to display</p>
-      )}
+      )} */}
     </div>
   );
 }

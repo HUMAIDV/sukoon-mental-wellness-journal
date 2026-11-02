@@ -12,7 +12,7 @@ const Navbar = () => {
     
       const activeStyle = `p-2 rounded-xl ${isDarkMode ? 'bg-violet-900' : 'bg-violet-200'}`;
     
-      const icons=[{"icon":faHouse,"link":"#journalContainer"},{"icon":faFaceSmile,"link":"#moodContainer"},{"icon":faQuoteRight,"link":"#quoteContainer"},{"icon":faCalendar,"link":"#calendarContainer"}]  
+      const icons=[{"icon":faHouse,"link":"#journalContainer","al":"Go to home"},{"icon":faFaceSmile,"link":"#moodContainer","al":"Select mood"},{"icon":faQuoteRight,"link":"#quoteContainer","al":"Read Quote"},{"icon":faCalendar,"link":"#calendarContainer","al":"Go to calendar"}]   
     
 
     return (
@@ -32,18 +32,18 @@ const Navbar = () => {
         <ul id='navList' className='hidden md:flex gap-5 sm:text-xl md:text-2xl flex justify-center items-center bg-gray-100 px-5 py-2 rounded-xl lg:min-w-100 glass-card'>
             {icons.map((item,index)=>(
             
-                <li key={index} onClick={()=>setActiveIcon(item.icon)} className={`w-full text-center cursor-pointer ${activeIcon===item.icon ? activeStyle : ''}`} ><a href={item.link}><FontAwesomeIcon icon={item.icon} color='' /></a></li>
+                <li key={index} onClick={()=>setActiveIcon(item.icon)} className={`w-full text-center cursor-pointer ${activeIcon===item.icon ? activeStyle : ''}`} ><a href={item.link} aria-label={item.al}><FontAwesomeIcon icon={item.icon} color='' /></a></li>
             ))}
         </ul>
         <div id="btnContainer" className='flex gap-3 sm:gap-5 sm:min-w-30'>
 
-            <button className='icon bg-violet-900 py-2 px-3 rounded-full text-xl cursor-pointer'><FontAwesomeIcon icon={faUser} color='white' /></button>
+            <button aria-label='user' className='icon bg-violet-900 py-2 px-3 rounded-full text-xl cursor-pointer'><FontAwesomeIcon icon={faUser} color='white' /></button>
             
             {isDarkMode ? 
-            <button className='icon border-2 border-violet-900 bg-white py-2 px-3 rounded-full text-xl cursor-pointer'  onClick={()=>setIsDarkMode(false)}><FontAwesomeIcon color='blueviolet' icon={faSun} />
+            <button aria-label='light mode' className='icon border-2 border-violet-900 bg-white py-2 px-3 rounded-full text-xl cursor-pointer'  onClick={()=>setIsDarkMode(false)}><FontAwesomeIcon color='blueviolet' icon={faSun} />
             </button>
             :
-            <button className='icon border-2 border-violet-900 bg-violet-900 py-2 px-3 rounded-full text-xl cursor-pointer' onClick={()=>setIsDarkMode(true)}>
+            <button aria-label='dark-mode' className='icon border-2 border-violet-900 bg-violet-900 py-2 px-3 rounded-full text-xl cursor-pointer' onClick={()=>setIsDarkMode(true)}>
             <FontAwesomeIcon icon={faMoon} color='white' />
             </button>
             }

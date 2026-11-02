@@ -61,6 +61,7 @@ export default function Calendar({ journalData, activeDate, setActiveDate }) {
         <div className="arrows">
 
           <button
+            aria-label='previous month'
             onClick={handlePrevMonth}
             className="icon p-1 rounded-full transition-colors text-gray-600 font-bold text-3xl cursor-pointer"
           >
@@ -68,6 +69,7 @@ export default function Calendar({ journalData, activeDate, setActiveDate }) {
 
           </button>
           <button
+            aria-label='next month'
             onClick={handleNextMonth}
             className="icon p-1 rounded-full transition-colors text-gray-600 font-bold text-3xl cursor-pointer"
           >
@@ -106,7 +108,7 @@ export default function Calendar({ journalData, activeDate, setActiveDate }) {
 
           return (
             !isFutureDate ? (
-              <a href="#journalContainer" key={dayNumber}>
+              <a href="#journalContainer" key={dayNumber} aria-label='write journal on this date'>
                 <div
                   className={`relative p-2 md:p-0 rounded-full flex flex-col items-center justify-center font-medium transition-all group aspect-square md:text-sm ${loggedMood
                       ? moodColors[loggedMood] || "bg-violet-500 text-white"

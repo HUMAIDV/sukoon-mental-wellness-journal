@@ -1,4 +1,4 @@
-import React, { act, useEffect, useMemo, useState } from 'react'
+import React, { act, lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import Hero from '../Components/Hero'
 import Journal from '../Components/Journal'
 import Mood from '../Components/Mood'
@@ -41,9 +41,7 @@ const Dashboard = () => {
         <Pattern journalData={journalData}/>
 
         <Journal activeDate={activeDate} activeMood={activeMood} setActiveMood={setActiveMood} journalData={journalData} setJournalData={setJournalData} filteredJournalData={filteredJournalData}/>
-        <Mood activeMood={activeMood} setActiveMood={setActiveMood} />
-        <MoodChart journalData={journalData}/>
-
+        <Mood activeMood={activeMood} setActiveMood={setActiveMood} />        <MoodChart journalData={journalData}/>
         </div>
         <div id="right" className='grid gap-5 md:grid-cols-2 lg:grid-cols-1'>
 

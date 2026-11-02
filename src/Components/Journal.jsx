@@ -117,7 +117,7 @@ const Journal = ({ activeMood, setActiveMood, journalData, setJournalData, activ
                 <div className='flex justify-between items-center text-3 mt-5'>
                     <p className='text-sm'>{journal.trim().length}/2000</p>
 
-                    <button disabled={loading} className={`btn-primary py-3 px-6 ${journal.trim().length < 1 || loading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'} `}
+                    <button aria-label='save' disabled={loading} className={`btn-primary py-3 px-6 ${journal.trim().length < 1 || loading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'} `}
                     ><FontAwesomeIcon icon={faBookmark} />&nbsp;{`${filteredJournalData?.length > 0 ?
                         (loading ? "Updating..." : "Update Journal") : (loading ? "Saving..." : "Save Journal")
                         }`}</button>
