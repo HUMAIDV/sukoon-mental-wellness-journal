@@ -13,6 +13,13 @@ export default function Calendar({ journalData, activeDate, setActiveDate }) {
 
   const monthHeaderName = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
 
+  // const moodMap = {}
+  //  journalData.forEach(entry => {
+    
+  //     if (entry.date && entry.mood) {
+  //       moodMap[entry.date] = entry.mood;
+  //     }
+  //   });
   const moodMap = useMemo(() => {
     const map = {};
     journalData.forEach(entry => {
@@ -80,7 +87,7 @@ export default function Calendar({ journalData, activeDate, setActiveDate }) {
           <div key={`empty-${idx}`} className="p-2"></div>
         ))}
 
-        {Array.from({ length: daysInMonth }).map((_, idx) => {
+        {Array.from({ length: daysInMonth }).map((_,idx) => {
           const dayNumber = idx + 1;
 
           const targetDateStr = `${dayNumber.toString().padStart(2, '0')} ${currentMonthShort} ${currentYear}`;
@@ -122,7 +129,7 @@ export default function Calendar({ journalData, activeDate, setActiveDate }) {
                     </span>
                   )}
                 </div>
-              </a>
+              </a> 
             ) : (
               <div
                 key={dayNumber}

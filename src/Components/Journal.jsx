@@ -18,8 +18,6 @@ const Journal = ({ activeMood, setActiveMood, journalData, setJournalData, activ
 
     const tags = ['Grateful', 'Reflective', 'Stressful', 'Hopeful'];
 
-
-
     const handleSubmit = (e) => {
         e.preventDefault();
         try {
@@ -56,7 +54,6 @@ const Journal = ({ activeMood, setActiveMood, journalData, setJournalData, activ
             setJournalData(updatedJournalData)
             console.log("updated", updatedJournalData);
 
-
             localStorage.setItem('journalEntries', JSON.stringify(updatedJournalData))
 
             setLoading(false)
@@ -76,18 +73,10 @@ const Journal = ({ activeMood, setActiveMood, journalData, setJournalData, activ
         if (filteredJournalData.length > 0) {
             setIsSaved(true)
             setJournal(filteredJournalData[0]?.journal)
-            setActiveTags(
-                Array.isArray(filteredJournalData[0]?.tag)
-                    ? filteredJournalData[0].tag
-                    : filteredJournalData[0]?.tag
-                        ? [filteredJournalData[0].tag]
-                        : []
-            );
+            setActiveTags(filteredJournalData[0]?.tag);
             setActiveMood(filteredJournalData[0]?.mood)
         } else {
-
             setIsSaved(false)
-
             setJournal('')
             setActiveTags(['Grateful'])
             setActiveMood('Okay')
@@ -129,7 +118,7 @@ const Journal = ({ activeMood, setActiveMood, journalData, setJournalData, activ
                     <p className='text-sm'>{journal.trim().length}/2000</p>
 
                     <button disabled={loading} className={`btn-primary py-3 px-6 ${journal.trim().length < 1 || loading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'} `}
-                    ><FontAwesomeIcon icon={faBookmark} />&nbsp;{`${filteredJournalData.length > 0 ?
+                    ><FontAwesomeIcon icon={faBookmark} />&nbsp;{`${filteredJournalData?.length > 0 ?
                         (loading ? "Updating..." : "Update Journal") : (loading ? "Saving..." : "Save Journal")
                         }`}</button>
                 </div>

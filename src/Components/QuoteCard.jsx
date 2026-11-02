@@ -12,7 +12,6 @@ const QuoteCard = () => {
       const response = await fetch('https://dummyjson.com/quotes/random')
       const data = await response.json()
       setQuote(data)
-      console.log("QuoteData",data);
       
     } catch (error) {
      console.log("Error",error);

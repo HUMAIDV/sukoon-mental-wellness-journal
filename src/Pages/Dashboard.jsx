@@ -1,4 +1,4 @@
-import React, { act, useEffect, useState } from 'react'
+import React, { act, useEffect, useMemo, useState } from 'react'
 import Hero from '../Components/Hero'
 import Journal from '../Components/Journal'
 import Mood from '../Components/Mood'
@@ -10,7 +10,6 @@ import Pattern from '../Components/Pattern'
 const Dashboard = () => {
 
   const [activeMood,setActiveMood] = useState('Okay')
-
   
   const currentDate = new Date().toLocaleDateString('en-IN', {
       day: '2-digit',
@@ -28,20 +27,9 @@ const Dashboard = () => {
     return [];
   })
 
-  const [filteredJournalData,setFilteredJournalData]=useState([])
-
-  useEffect(()=>{
-
-    const filteredData = journalData.filter(entry=>{
-      if(!activeDate) return;
-      return entry.date.includes(activeDate)
-    })
-
-    setFilteredJournalData(filteredData)
-  },[activeDate,journalData])
-
-  console.log(filteredJournalData);
-  
+  const filteredJournalData = useMemo(()=>{
+      return journalData.filter(entry=> entry?.date === activeDate)
+    },[journalData,activeDate])
 
   return (
     <div id='dashboardContainer' className='px-5 pb-30 sm:px-10 md:pb-5 md:px-20 lg:px-10 xl:px-25 overflow-x-hidden'>

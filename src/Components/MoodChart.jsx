@@ -17,7 +17,7 @@ const MoodChart = ({journalData}) => {
             <div id="iconContainer" className='flex gap-2 items-center'>
                 <p className='icon'><FontAwesomeIcon icon={moodIcons[maxMood]} color='rgb(82, 112, 139)' /></p>
                 <p>{maxMood && (`Mostly ${maxMood}`)}</p>
-            </div>
+            </div> 
         </div>
         <p className='font-1 text-3xl'>Mood this week</p>
         <div id="chartContainer" className='pb-5'>
